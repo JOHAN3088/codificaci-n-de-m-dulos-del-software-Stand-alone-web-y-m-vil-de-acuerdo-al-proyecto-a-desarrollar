@@ -4,10 +4,43 @@
  */
 package com.proyectosena.medicamentos.controller;
 
+import com.proyectosena.medicamentos.modelo.medicamento;
+import com.proyectosena.medicamentos.services.mediservices;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 /**
  *
  * @author User
  */
+@RestController
+@RequestMapping("/usuarios") 
 public class Medicontroller {
+    @Autowired
+     private  mediservices mediservices;
     
+    @PostMapping("/nuevo")//ME DIRIGE A LA OPCION DE CREAR EL NUEVO
+    public medicamento newMedicamento(@RequestBody medicamento Medicamentos){
+        
+        return this.mediservices.newMedicamento(Medicamentos);
+}
+    //CONFIGURACION DE LAS OPCIONES DEL REPOSITORIO
+    @GetMapping("/mostrar")
+    public Iterable<medicamento> getAll(){
+        return mediservices.getAll();
+    }
+    @PostMapping("/modificar")
+    public medicamento updateMedicamentos(@RequestBody medicamento Medicamentos){
+        return this.mediservices.modifymedicamento(Medicamentos);
+    }
+    @PostMapping(value="/(id)")
+    public Boolean deleteMedicamentos(@PathVariable (value= "id")Long idcodigo){
+        return this.mediservices.deletemedicamento(idcodigo);
+    }
+   
 }
