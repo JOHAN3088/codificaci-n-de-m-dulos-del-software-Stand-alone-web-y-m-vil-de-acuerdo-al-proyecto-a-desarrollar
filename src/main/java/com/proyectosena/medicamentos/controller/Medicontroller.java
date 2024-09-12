@@ -19,15 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
  * @author User
  */
 @RestController
-@RequestMapping("/usuarios") 
+@RequestMapping("/medicamentos") 
 public class Medicontroller {
     @Autowired
      private  mediservices mediservices;
     
     @PostMapping("/nuevo")//ME DIRIGE A LA OPCION DE CREAR EL NUEVO
-    public medicamento newMedicamento(@RequestBody medicamento Medicamentos){
+    public medicamento newMedicamentos(@RequestBody medicamento newMedicamentos){
         
-        return this.mediservices.newMedicamento(Medicamentos);
+        return this.mediservices.newMedicamentos(newMedicamentos);
 }
     //CONFIGURACION DE LAS OPCIONES DEL REPOSITORIO
     @GetMapping("/mostrar")
@@ -38,8 +38,8 @@ public class Medicontroller {
     public medicamento updateMedicamentos(@RequestBody medicamento Medicamentos){
         return this.mediservices.modifymedicamento(Medicamentos);
     }
-    @PostMapping(value="/(id)")
-    public Boolean deleteMedicamentos(@PathVariable (value= "id")Long idcodigo){
+    @PostMapping("medi/{id}")
+    public Boolean deletemedicamento(@PathVariable Long idcodigo){
         return this.mediservices.deletemedicamento(idcodigo);
     }
    
