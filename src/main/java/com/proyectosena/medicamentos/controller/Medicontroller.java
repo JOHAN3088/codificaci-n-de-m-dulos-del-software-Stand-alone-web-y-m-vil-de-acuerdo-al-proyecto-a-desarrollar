@@ -7,6 +7,7 @@ package com.proyectosena.medicamentos.controller;
 import com.proyectosena.medicamentos.modelo.medicamento;
 import com.proyectosena.medicamentos.services.mediservices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/medicamentos") 
+@CrossOrigin("*")
 public class Medicontroller {
     @Autowired
      private  mediservices mediservices;
@@ -39,8 +41,10 @@ public class Medicontroller {
         return this.mediservices.modifymedicamento(Medicamentos);
     }
     @PostMapping("medi/{id}")
-    public Boolean deletemedicamento(@PathVariable Long idcodigo){
-        return this.mediservices.deletemedicamento(idcodigo);
-    }
-   
+    //public Boolean deletemedicamento(@PathVariable Long idcodigo){
+    //    return this.mediservices.deletemedicamento(idcodigo);
+    
+   public void deletemedicamento(@PathVariable Long idcodigo){
+       this.mediservices.deletemedicamento(idcodigo);
+   }
 }
